@@ -4,6 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantController } from './restaurant/restaurant.controller';
 import { RestaurantService } from './restaurant/restaurant.service';
 import { RestaurantModule } from './restaurant/restaurant.module';
+import { MenuItemsModule } from './menu-items/menu-items.module';
+import { MenuItemsController } from './menu-items/menu-items.controller';
+import { MenuItemsService } from './menu-items/menu-items.service';
 
 @Module({
   imports: [
@@ -19,8 +22,9 @@ import { RestaurantModule } from './restaurant/restaurant.module';
       ssl: { rejectUnauthorized: false },
     }),
     RestaurantModule,
+    MenuItemsModule,
   ],
-  controllers: [RestaurantController],
-  providers: [RestaurantService],
+  controllers: [RestaurantController, MenuItemsController],
+  providers: [RestaurantService, MenuItemsService],
 })
 export class AppModule {}

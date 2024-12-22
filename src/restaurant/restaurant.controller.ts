@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { RestaurantService } from './restaurant.service';
 import { RestaurantDto } from 'src/dto/Request/restaurant.dto';
@@ -16,14 +16,13 @@ export class RestaurantController {
     return this.restaurantService.createRestaurant(req);
   }
 
-  @Post('update')
-  async updateRestaurant() {}
-
-  @Delete('delete')
-  async deleteeRestaurant() {}
-
   @Get(':id')
   async find(@Param('id') id: string) {
     return this.restaurantService.findRestaurant(id);
+  }
+
+  @Get('with-items/:id')
+  async findWithItems(@Param('id') id: string) {
+    return this.restaurantService.findWithItems(id);
   }
 }
